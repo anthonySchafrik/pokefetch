@@ -1,27 +1,28 @@
-import axios from 'axios';
-import React, {useEffect} from 'react';
-import {Text, View} from 'react-native';
+import React, {useState} from 'react';
+import {Button, Text, TextInput, View} from 'react-native';
 
 import {fetchPokeman} from './api/pokeman';
 
 const App = () => {
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const mon2 = await fetchPokeman('ditto');
+  const [mon, setMon] = useState('');
 
-        console.log(mon2);
-      } catch (catchError) {
-        console.log({catchError});
-      }
-    };
+  const handleFetch = async () => {
+    try {
+      const data = await fetchPokeman(mon);
 
-    getData();
-  }, []);
+      console.log(data);
+    } catch (catchError) {
+      console.log({catchError});
+    }
+  };
+
+  const handleMon = () => (text: string) => setMon(text);
 
   return (
     <View>
       <Text>Hello Enter Pokeman you would like to see</Text>
+      <TextInput onChangeText={handleMon()} />
+      <Button onPress={handleFetch} title="Get Pokemon data" />
     </View>
   );
 };
