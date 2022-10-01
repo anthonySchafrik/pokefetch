@@ -10,6 +10,7 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
+    "axios": "^0.27.2",
     "react": "18.1.0",
     "react-native": "0.70.1"
   },
@@ -40,5 +41,10 @@
       "json",
       "node"
     ]
+  },
+  "overrides": {
+    "react-native": {
+      "react-devtools-core": "4.14.0"
+    }
   }
 }
